@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 FROM python:3-alpine
 
 WORKDIR /usr/src/app
@@ -8,4 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "python", "./main.py" ]
+ENTRYPOINT ["python", "./main.py"]
+
+CMD ["/csv", "kafka", "19091"]
