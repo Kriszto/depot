@@ -15,8 +15,10 @@ def process_csv(filename: str, callback: Callable):
         with open(filename, 'r') as read_obj:
             # pass the file object to DictReader() to get the DictReader object
             csv_dict_reader = DictReader(read_obj)
+            rowNumber = 0
             # iterate over each line as an ordered dictionary
             for row in csv_dict_reader:
+                rowNumber += 1
                 try:
                     # row variable is a dictionary that represents a row in csv
                     try:
@@ -26,9 +28,9 @@ def process_csv(filename: str, callback: Callable):
                         callback(e)
                     except KeyError as v:
                         logging.warning(v)
-                        raise KeyError("invalid row format in csv")
+                        raise KeyError(f"invalid format in row {rowNumber}")
                 except ValueError as v:
-                    logging.warning(v)
+                    logging.warning(f"invalid format in row {rowNumber} ({v})")
     except FileNotFoundError as e:
         logging.warning(e)
         raise e

@@ -30,14 +30,12 @@ p = Producer({'bootstrap.servers': f'{kafka_host}:{kafka_port}',
               'queue.buffering.max.ms': 500,
               'batch.num.messages': 50,
               })
-logging.info(p)
-
 
 def log_file_event(event: FileSystemEvent):
-    logging.info(f'csv processing started: {event.src_path}')
+    logging.info(f'csv processing started: {os.path.basename(event.src_path)}')
     process_csv(event.src_path, send_entity)
     p.flush(30)
-    logging.debug(f'archiving {event.src_path}')
+    logging.info(f'archiving {os.path.basename(event.src_path)}')
     os.rename(event.src_path, event.src_path + ".processed")
     logging.info(f'csv processing finished: {event.src_path}')
 

@@ -35,6 +35,7 @@ class Handler(FileSystemEventHandler):
         self.func = func
 
     def on_created(self, event):
+    logging,info(f'got an event: {event.src_path}')
         if event.is_directory:
             return None
         if event.src_path.endswith('.csv'):
