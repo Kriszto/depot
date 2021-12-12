@@ -62,20 +62,20 @@ class TestCsvWatcher(TestCase):
     #     observer.stop()
 
     def test_handler(self):
-        cb = Mock()
-        event_handler = Handler(cb)
+        callback = Mock()
+        event_handler = Handler(callback)
 
         event = FileCreatedEvent('/tmp/file.csv')
         event_handler.on_created(event)
-        cb.assert_called_once_with(event)
-        cb.reset_mock()
+        callback.assert_called_once_with(event)
+        callback.reset_mock()
 
         event2 = FileCreatedEvent('/tmp/file.csvx')
         event_handler.on_created(event2)
-        cb.assert_not_called()
-        cb.reset_mock()
+        callback.assert_not_called()
+        callback.reset_mock()
 
         event3 = DirCreatedEvent('/tmp/x')
         event_handler.on_created(event3)
-        cb.assert_not_called()
+        callback.assert_not_called()
 

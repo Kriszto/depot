@@ -31,6 +31,7 @@ def process_csv(filename: str, callback: Callable):
                         raise KeyError(f"invalid format in row {rowNumber}")
                 except ValueError as v:
                     logging.warning(f"invalid format in row {rowNumber} ({v})")
+                    raise ValueError(f"invalid value in row {rowNumber}")
     except FileNotFoundError as e:
         logging.warning(e)
         raise e
