@@ -1,4 +1,2 @@
 /csv_to_process/*
-/data/zookeeper/
-/data/kafka/
-/data/kafka/data/event-0/
+/data/
