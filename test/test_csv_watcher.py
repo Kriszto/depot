@@ -4,7 +4,7 @@ from unittest.mock import patch, Mock
 
 from pyfakefs.fake_filesystem_unittest import TestCase
 
-from csvwatcher import CsvWatcher, Handler
+from csv_watcher import CsvWatcher, Handler
 from watchdog.observers import Observer
 from watchdog.events import FileCreatedEvent, DirCreatedEvent
 

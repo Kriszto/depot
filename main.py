@@ -8,7 +8,7 @@ from watchdog.events import FileSystemEvent
 
 from csv_processor import process_csv
 from entity import Entity
-from csvwatcher import CsvWatcher
+from csv_watcher import CsvWatcher
 
 EVENT = 'event'
 
