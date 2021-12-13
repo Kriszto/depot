@@ -39,4 +39,4 @@ class Handler(FileSystemEventHandler):
         if event.is_directory:
             return None
         if event.src_path.endswith('.csv'):
-            self.func(event)
+            self.func(event.src_path)
