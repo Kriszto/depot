@@ -48,6 +48,6 @@ services:
       - "19091"
     volumes:
       - ./data:/data
-      - ./csv_to_process:/csv_to_process
+      - ./csv_to_process:/csv_to_process:consistent
     depends_on:
       - kafdrop

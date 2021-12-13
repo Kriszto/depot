@@ -32,8 +32,8 @@ class TestCsProcessor(TestCase):
             file_path,
             contents=self.invalid_row_format
         )
-        with self.assertRaises(KeyError):
-            process_csv(file_path, self.callback)
+        n = process_csv(file_path, self.callback)
+        self.assertEqual(0, n)
 
     def mock_func(*args, **kwargs):
         raise ValueError
@@ -45,13 +45,13 @@ class TestCsProcessor(TestCase):
             file_path,
             contents=self.invalid_csv
         )
-        with self.assertRaises(ValueError):
-            process_csv(file_path, self.callback)
+        n = process_csv(file_path, self.callback)
+        self.assertEqual(0, n)
 
     def test_wrong_csv_path(self):
         file_path = '/tmp/wrong.csv'
-        with self.assertRaises(FileNotFoundError):
-            process_csv(file_path, self.callback)
+        n = process_csv(file_path, self.callback)
+        self.assertIsNone(n)
 
 
 if __name__ == '__main__':
